@@ -2,280 +2,238 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> 光の早打ち </title>
 
+  <style>
+    /* --- ベース --- */
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --accent: #ffcc00;
+      --wavy: lightgreen;
+      --container-max: 900px;
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%;margin:0;padding:0}
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      line-height:1.4;
+      -webkit-font-smoothing:antialiased;
+    }
 
+    /* --- タイポグラフィ（レスポンシブ）--- */
+    h1{ text-align:center; max-width:100%; font-size: clamp(1.6rem, 6vw, 3.2rem); margin:40px auto 8px }
+    h2{ text-align:center; font-size: clamp(1rem, 3.5vw, 1.6rem); margin:18px 0 }
+    h3{ text-align:center; max-width:100%; font-size: clamp(1.2rem, 4.5vw, 2.6rem); margin-top:18px }
 
+    ul.no-dot { list-style-type:none; padding-left:0 }
+    .special{ font-family: "Times New Roman", serif; font-weight:800 }
+    .underline-wavy{ text-decoration-line: underline; text-decoration-style: wavy; color: var(--wavy); }
+    .underline-solid{ text-decoration-line: underline; text-decoration-style: solid; }
 
-<!--のこ<style>のなかに色とかを書くと色が付けられる-->
-    <style>
-      h1{
-        text-align: center;
-        max-width: 100%;
-        font-size: 4em;
-        margin-top: 50px;
-        }
-      h2{
-        text-align: center;
-        font-size: 2em;
-        }
-      h3{
-        text-align: center;
-        max-width: 100%;
-        font-size: 4em;
-        margin-top: 50px;
-        }
-      ul.no-dot {
-        list-style-type: none;
-        padding-left: 0;
-       }
-      .special{
-        font-family: "Times New Roman" , serif;
-        font-weight:  1000;
-       }
-      .underline-wavy{
-        text-decoration-line: underline;
-        text-decoration-style: wavy;
-        color: lightgreen;               /* 文字の色 */
-       }
-      .underline-solid{
-        text-decoration-line: underline;
-        text-decoration-style: solid;
-       }
-      .images-table { float: right; border-collapse: collapse; margin-left: 20px; }
-      .images-table td { border: 1px solid #666; padding: 4px; }
-      img.responsive { max-width: 300px; height: auto; display: block; }
-      body {
-        background-color: black;
-        color: white;
-        font-family: sans-serif;
-       }
+    /* --- レイアウトコンテナ --- */
+    .container{ max-width:var(--container-max); width:calc(100% - 40px); margin:40px auto; border-radius:10px; }
+    .background-area{ border:3px solid #fff; padding:18px; }
+    .background-area1{ padding:10px; }
 
-    /* 背景を付けたい範囲 */
-      .background-area {
-        width: 900px;          /* 幅を指定 */
-        margin: 50px auto;     /* 画面中央に配置 */
-        border: 3px solid white;             /* 枠線（任意） */
-        border-radius: 10px;                 /* 角を丸く */
-        }
-      .background-area1 {
-        width: 900px;          /* 幅を指定 */
-        margin: 50px auto;     /* 画面中央に配置 */
-        }
-      .shining-text {
-        font-size: 80px;
-        font-weight: bold;
-        font-family: 'Arial', sans-serif;
-        color: #fff;
-        position: relative;
-        background: linear-gradient(
-          90deg,
-          #fff,
-          #ffdd55,
-          #fff,
-          #55ccff
-        );
-        background-size: 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shine 3s linear infinite;
-      }
-      @keyframes shine {
-        0% {
-          background-position: 0% 50%;
-        }
-        100% {
-          background-position: 100% 50%;
-        }
-      }
-      .glow-text {
-        font-size: 80px;
-        font-weight: bold;
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(90deg, #fff, #ffcc00, #fff);
-        background-size: 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: shine 3s linear infinite;
-        text-shadow:
-          0 0 10px #ffcc00,
-          0 0 20px #ffcc00,
-          0 0 40px #ffcc00,
-          0 0 80px #ffcc00;
-      }
+    /* --- 視覚効果テキスト（レスポンシブ化） --- */
+    .shining-text, .glow-text, .italic-speed{ display:block; margin:0 auto; text-align:center }
 
-      @keyframes shine {
-        from { background-position: 0% 30%; }
-        to   { background-position: 10% 30%; }
-      }
-      .italic-speed {
-        font-size: 80px;
-        font-weight: bold;
-        font-style: italic; /* 斜めに傾ける */
-        color: blue;
-        letter-spacing: -2px; /* 緊張感を出す */
-      }
-      table {
-        margin: 0 auto; /* table単体でも中央寄せ可能 */
-       }
-      ul {
-        list-style-type: disc;
-        padding: 0;
-        margin: 0 auto; /* 横方向中央 */
-        text-align: center; /* 中のテキストも中央寄せ */
-       }
-      ol {
-       list-style-position: outside; /* デフォルトで左側に番号を配置 */
-       padding-left: 40px;           /* 番号分のスペースを確保 */
-       text-align: left;             /* テキストを左揃え */
-       width: 350px;                 /* 任意の幅 */
-       margin: 0 auto;               /* 横方向中央 */
-       }
-      .text-center {
-       text-align: center;
-       }
-      p {
-       text-align: center;
-       }
-      table, ol, ul {
-      font-size: 1rem;
-      }
-      @media (max-width: 480px) {
-        table, ol, ul {
-          font-size: 1.1rem;
-        }
-      }
-    </style>
+    .shining-text{
+      font-weight:bold; font-family: 'Arial', sans-serif;
+      font-size: clamp(2rem, 9vw, 5rem);
+      color: #fff; position:relative;
+      background: linear-gradient(90deg,#fff,#ffdd55,#fff,#55ccff);
+      background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      animation: shine 3s linear infinite;
+    }
 
+    .glow-text{
+      font-weight:bold; font-family:'Arial',sans-serif;
+      font-size: clamp(2rem, 9vw, 5rem);
+      background: linear-gradient(90deg,#fff,#ffcc00,#fff);
+      background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      animation: shine 3s linear infinite;
+      text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 40px #ffcc00, 0 0 80px #ffcc00;
+    }
 
+    @keyframes shine{ from{ background-position:0% 30% } to{ background-position:100% 30% } }
 
+    .italic-speed{
+      font-style:italic; letter-spacing:-1px; color:deepskyblue;
+      font-size: clamp(1.6rem, 6vw, 3.6rem); font-weight:700;
+    }
 
+    /* --- 表・画像の扱い（モバイル対応） --- */
+    table{ margin: 12px auto; border-collapse: collapse; width:100%; }
+    table[border]{ border:1px solid #fff }
+    th, td{ padding:8px; border:1px solid #999; text-align:center }
+    caption{ caption-side: top; padding-bottom:6px }
+
+    .images-table { float:right; border-collapse: collapse; margin-left: 12px; max-width:40%; }
+    .images-table td { border:1px solid #666; padding:4px }
+    img.responsive { max-width:100%; height:auto; display:block }
+
+    /* テーブル等の横スクロール対応 */
+    .scroll-wrapper{ overflow-x:auto; -webkit-overflow-scrolling:touch }
+
+    /* --- リスト・段落調整 --- */
+    ul, ol{ margin: 6px auto; padding: 0; }
+    ol{ list-style-position: outside; padding-left: 40px; text-align:left; width:100%; max-width:420px }
+    p, .text-center{ text-align:center }
+
+    /* --- セーフティ（小画面での読みやすさ） --- */
+    @media (max-width:480px){
+      .container{ width: calc(100% - 24px); margin:24px auto }
+      .background-area{ padding:12px }
+      ol{ padding-left: 28px }
+      .images-table{ float:none; max-width:100%; margin:12px auto }
+    }
+
+    /* --- 小修正・アクセシビリティ --- */
+    a{ color: skyblue }
+    strong{ font-weight:800 }
+  </style>
 </head>
 <body>
 
-<body style="background-color: black; color: white;">
+  <div class="container">
 
+    <h1 class="glow-text"><span class="special">光を打て!</span></h1>
+    <h3 class="italic-speed"><span class="special"> ～スピード早打ち体験!～</span></h3>
 
-  <h1 class="glow-text"><span class="special">光を打て!</span> </h1>
-  <h3 class="italic-speed "> <span class="special"> ～スピード早打ち体験!～</span> </h3>
+    <div class="background-area">
+      <h2 class="underline-wavy">作品紹介</h2>
+      <p>パラボラアンテナでレーザー光を集めて的に当てる <strong>早打ち体験装置</strong> です。</p>
+      <p>光の反射を利用して、より正確にレーザーを当てる仕組みになっています。</p>
 
+      <h2 class="underline-wavy">場所・日時</h2>
+      <ul class="no-dot">
+        <li><strong>場所</strong>
+          <ul class="no-dot">
+            <li>香川高専詫間キャンパス
+              <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第１学科棟(令和7年度 学生便覧137p)</a></p>
+              <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第２基礎通信工学実験室(令和7年度 学生便覧140p)</a></p>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
-<div class="background-area">
-<h2 class= "underline-wavy"> 作品紹介 </h2>
-<p> パラボラアンテナでレーザー光を集めて的に当てる <span style="font-weight: bold;">早打ち体験装置</span> です。</p>
-<p> 光の反射を利用して、より正確にレーザーを当てる仕組みになっています。 </p>
+      <ul class="no-dot">
+        <li><strong>日時</strong>
+          <ul class="no-dot">
+            <li>令和7年 11月1日 (土) 9:30-16:30</li>
+            <li>令和7年 11月2日 (日) 9:30-15:30</li>
+          </ul>
+        </li>
+      </ul>
 
+      <h2 class="underline-wavy">メンバー紹介</h2>
+      <div class="scroll-wrapper">
+        <table border="1">
+          <caption>メンバー</caption>
+          <tr>
+            <td>石川純</td>
+            <td>渡辺朱音</td>
+            <td>田尾瑞基</td>
+            <td>八木優樹</td>
+            <td>尾形愛翔</td>
+            <td>濱田准稀也</td>
+            <td>町田絢香</td>
+          </tr>
+        </table>
+      </div>
 
-<h2 class="underline-wavy"> 場所・日時 </h2>
- <ul class="no-dot">
-  <li>  <span style="font-weight: bold;">場所</span> </li> 
-    <ul class="no-dot">
-     <li> 香川高専詫間キャンパス </p><p> <a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf" style="color: skyblue;"> 第１学科棟(令和7年度 学生便覧137p) </a> </p><p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf" style="color: skyblue;">  第２基礎通信工学実験室(令和7年度 学生便覧140p) </a> </p> </li>
-    </ul>
- </ul> 
- <ul class="no-dot">
-  <li>  <span style="font-weight: bold;">日時</span>  </li>
-    <ul class="no-dot">
-     <li> 令和7年 11月1日 (土) 9:30-16:30 </li>
-     <li> 令和7年 11月2日 (日) 9:30-15:30 </li>
-    </ul> 
- </ul>
+      <h2 class="underline-wavy">仕組み</h2>
+      <ul class="no-dot">
+        <li>常に5Vを光トランジスタにかけておく</li>
+        <li>↓</li>
+        <li><strong>光が当たる</strong></li>
+        <li>↓</li>
+        <li>流れる <strong>電流が増える</strong></li>
+        <li>↓</li>
+        <li>抵抗の <strong>両端電圧が変化</strong> する</li>
+        <li>↓</li>
+        <li>その <strong>変化を</strong> Arduinoで <strong>検知</strong> する</li>
+        <li>↓</li>
+        <li>ボタンを押すと <strong>ライトが点灯</strong></li>
+        <li>↓</li>
+        <li>現在の <strong>タイマーをカウント</strong> する</li>
+        <li>↓</li>
+        <li>ライトが点灯しているかつ電圧が□V以下になった時、 <strong>ブザーを鳴らす</strong></li>
+        <li>↓</li>
+        <li>現在の <strong>タイマーをカウント</strong> する</li>
+        <li>↓</li>
+        <li>前回の結果と比べて <strong>経過時間を計算</strong> する</li>
+      </ul>
 
+      <h2 class="underline-wavy">体験の仕方</h2>
+      <ol>
+        <li><span class="underline-solid"><strong>遮光眼鏡</strong></span> を受け取り、付ける</li>
+        <li>線の前に立ち、<span class="underline-solid"><strong>レーザー銃</strong></span> を受け取る</li>
+        <li>担当者がスイッチを押してスタート</li>
+        <li>ライトが点灯したら的を狙って <span class="underline-solid"><strong>光を当てる</strong></span></li>
+        <li>光が当たったら <span class="underline-solid"><strong>音が鳴る</strong></span></li>
+      </ol>
 
-<h2 class="underline-wavy"> メンバー紹介 </h2>
-<table border="1">
-<caption> メンバー </caption>
- <tr>
-  <td> 石川純 </td>
-  <td> 渡辺朱音 </td>
-  <td> 田尾瑞基 </td>
-  <td> 八木優樹 </td>
-  <td> 尾形愛翔 </td>
-  <td> 濱田准稀也 </td>
-  <td> 町田絢香 </td>
- </tr>
-</table>
+      <p class="text-center">ライトが点灯してから的に当たるまでの <strong>時間を計測</strong> するよ！</p>
 
+      <h2 class="underline-wavy">安全・注意</h2>
+      <ul class="no-dot">
+        <li><span class="underline-solid"><strong>遮光眼鏡</strong></span> を使用！</li>
+        <li>銃を人に<span class="underline-solid"><strong>向けない！</strong></span></li>
+        <li>乱暴に扱わない！</li>
+        <li>ボタンを押したままにしない！</li>
+        <li>暗いところでするので、<span class="underline-solid"><strong>足元に注意</strong></span> する！</li>
+      </ul>
 
-<h2 class="underline-wavy"> 仕組み </h2>
- <ul class="no-dot">
-  <li> 常に5Vを光トランジスタにかけておく </li>
-  <li> ↓ </li>
-  <li>  <span style="font-weight: bold;">光が当たる</span>  </li>
-  <li> ↓ </li>
-  <li> 流れる <span style="font-weight: bold;">電流が増える</span>  </li>
-  <li> ↓ </li>
-  <li> 抵抗の <span style="font-weight: bold;">両端電圧が変化</span> する </li>
-  <li> ↓ </li>
-  <li> その <span style="font-weight: bold;">変化を</span> Aruduinoで <span style="font-weight: bold;">検知</span> する </li>
-  <li> ↓ </li>
-  <li> ボタンを押すと <span style="font-weight: bold;">ライトが点灯</span>  </li>
-  <li> ↓ </li>
-  <li> 現在の <span style="font-weight: bold;">タイマーをカウント</span> する </li>
-  <li> ↓ </li>
-  <li> ライトが点灯しているかつ電圧が□V以下になった時、 <span style="font-weight: bold;">ブザーを鳴らす</span>  </li>
-  <li> ↓ </li>
-  <li> 現在の <span style="font-weight: bold;">タイマーをカウント</span> する </li>
-  <li> ↓ </li>
-  <li> 前回の結果と比べて <span style="font-weight: bold;">経過時間を計算</span> する </li>
- </ul>
+      <h3 class="text-center"><span class="special">さあ！戦いの始まりだ！</span></h3>
+    </div>
 
-<h2 class="underline-wavy"> 体験の仕方 </h2>
- <ol>
-  <li> <span class="underline-solid" style="font-weight: bold;">遮光眼鏡</span> を受け取り、付ける </li>
-  <li> 線の前に立ち、<span class="underline-solid" style="font-weight: bold;">レーザー銃</span> を受け取る </li>
-  <li> 担当者がスイッチを押してスタート </li>
-  <li> ライトが点灯したら的を狙って <span class="underline-solid" style="font-weight: bold;">光を当てる</span> </li>
-  <li> 光が当たったら <span class="underline-solid" style="font-weight: bold;">音が鳴る</span> </li>
- </ol>
+    <h2 class="underline-wavy">実験・作成の工夫</h2>
+    <div class="scroll-wrapper">
+      <table border="1">
+        <tr>
+          <th>苦労したこと</th>
+          <th>意識したこと</th>
+        </tr>
+        <tr>
+          <td>
+            <ul class="no-dot">
+              <li>Arduinoのコード作成</li>
+              <li>回路作成</li>
+              <li>緑のレーザーポインターの調達</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="no-dot">
+              <li>的(パラボラアンテナ)の凹凸をヤスリによりなくした</li>
+              <li>アルミホイルを貼ることで、光を反射させるようにした</li>
+              <li><!-- 銃について書く --></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-<p class="text-center"> ライトが点灯してから的に当たるまでの <span style="font-weight: bold;">時間を計測</span> するよ！ </p>
+    <div class="background-area1">
+      <h2 class="underline-wavy">作業風景</h2>
+      <div class="scroll-wrapper">
+        <table border="1">
+          <tr>
+            <td> <!-- 画像やキャプションをここへ追加 -->
+              <img class="responsive" src="" alt="作業風景（画像を追加してください）" />
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
 
+  </div>
 
-<h2 class="underline-wavy"> 安全・注意 </h2>
- <ul class="no-dot">
-  <li> <span class="underline-solid" style="font-weight: bold;">遮光眼鏡</span> を使用！ </li>
-  <li> 銃を人に<span class="underline-solid" style="font-weight: bold;">向けない！</span> </li>
-  <li> 乱暴に扱わない！ </li>
-  <li> ボタンを押したままにしない！ </li>
-  <li> 暗いところでするので、<span class="underline-solid" style="font-weight: bold;">足元に注意</span> する！ </li>
- </ul>
-
-<h3 class="text-center"> <span class="special"> さあ！戦いの始まりだ！</span>  </h3>
-</div>
-
-
-<h2 class="underline-wavy"> 実験・作成の工夫 </h2>
-<table border="1">
-<caption>  </caption>
- <tr>
-  <th> 苦労したこと </th>
-  <th> 意識したこと </th>
- </tr>
-
- <tr>
-  <td>
- <ul class="no-dot">
-      <li> Arduinoのコード作成 </li>
-      <li> 回路作成 </li>
-      <li> 緑のレーザーポインターの調達 </li>
-    </ul>
-  </td>
-  <td>
- <ul class="no-dot">
-      <li> 的(パラボラアンテナ)の凹凸をヤスリによりなくした </li>
-      <li> アルミホイルを貼ることで、光を反射させるようにした </li>
-      <li> <!-- 銃について書く --> </li>
-    </ul>
-  </td>
- </tr>
-</table>
-
-
-<div class="background-area1">
-<h2 class="underline-wavy"> 作業風景 </h2>
-<table border="1">
-<tr>
 
 
 
