@@ -3,99 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> 光の早打ち </title>
+  <title>光の早打ち</title>
 
   <style>
-    /* --- ベース --- */
-    :root{
-      --bg:#000;
-      --fg:#fff;
+    :root {
+      --bg: #000;
+      --fg: #fff;
       --accent: #ffcc00;
       --wavy: lightgreen;
       --container-max: 900px;
     }
-    *{box-sizing: border-box}
-    html,body{height:100%;margin:0;padding:0}
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; padding: 0; }
     body {
       background-color: var(--bg);
       color: var(--fg);
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      line-height:1.4;
-      -webkit-font-smoothing:antialiased;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* --- タイポグラフィ（レスポンシブ）--- */
-    h1{ text-align:center; max-width:100%; font-size: clamp(1.6rem, 6vw, 3.2rem); margin:40px auto 8px }
-    h2{ text-align:center; font-size: clamp(1rem, 3.5vw, 1.6rem); margin:18px 0 }
-    h3{ text-align:center; max-width:100%; font-size: clamp(1.2rem, 4.5vw, 2.6rem); margin-top:18px }
+    /* --- タイポグラフィ --- */
+    h1 { text-align: center; font-size: clamp(1.6rem, 6vw, 3.2rem); margin: 40px auto 8px; }
+    h2 { text-align: center; font-size: clamp(1rem, 3.5vw, 1.6rem); margin: 18px 0; }
+    h3 { text-align: center; font-size: clamp(1.2rem, 4.5vw, 2.6rem); margin-top: 18px; }
 
-    ul.no-dot { list-style-type:none; padding-left:0 }
-    .special{ font-family: "Times New Roman", serif; font-weight:800 }
-    .underline-wavy{ text-decoration-line: underline; text-decoration-style: wavy; color: var(--wavy); }
-    .underline-solid{ text-decoration-line: underline; text-decoration-style: solid; }
+    ul.no-dot { list-style-type: none; padding-left: 0; }
+    .special { font-family: "Times New Roman", serif; font-weight: 800; }
+    .underline-wavy { text-decoration-line: underline; text-decoration-style: wavy; color: var(--wavy); }
+    .underline-solid { text-decoration-line: underline; text-decoration-style: solid; }
 
-    /* --- レイアウトコンテナ --- */
-    .container{ max-width:var(--container-max); width:calc(100% - 40px); margin:40px auto; border-radius:10px; }
-    .background-area{ border:3px solid #fff; padding:18px; }
-    .background-area1{ padding:10px; }
+    /* --- コンテナ --- */
+    .container { max-width: var(--container-max); width: calc(100% - 40px); margin: 40px auto; border-radius: 10px; text-align: center; }
+    .background-area { border: 3px solid #fff; padding: 18px; text-align: center; }
+    .background-area1 { padding: 10px; text-align: center; }
 
-    /* --- 視覚効果テキスト（レスポンシブ化） --- */
-    .shining-text, .glow-text, .italic-speed{ display:block; margin:0 auto; text-align:center }
-
-    .shining-text{
-      font-weight:bold; font-family: 'Arial', sans-serif;
+    /* --- 光るテキスト --- */
+    .shining-text, .glow-text, .italic-speed { display: block; margin: 0 auto; text-align: center; }
+    .shining-text {
+      font-weight: bold; font-family: 'Arial', sans-serif;
       font-size: clamp(2rem, 9vw, 5rem);
-      color: #fff; position:relative;
-      background: linear-gradient(90deg,#fff,#ffdd55,#fff,#55ccff);
-      background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background: linear-gradient(90deg, #fff, #ffdd55, #fff, #55ccff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       animation: shine 3s linear infinite;
     }
-
-    .glow-text{
-      font-weight:bold; font-family:'Arial',sans-serif;
+    .glow-text {
+      font-weight: bold; font-family: 'Arial', sans-serif;
       font-size: clamp(2rem, 9vw, 5rem);
-      background: linear-gradient(90deg,#fff,#ffcc00,#fff);
-      background-size:300%; -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background: linear-gradient(90deg, #fff, #ffcc00, #fff);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       animation: shine 3s linear infinite;
       text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 40px #ffcc00, 0 0 80px #ffcc00;
     }
-
-    @keyframes shine{ from{ background-position:0% 30% } to{ background-position:100% 30% } }
-
-    .italic-speed{
-      font-style:italic; letter-spacing:-1px; color:deepskyblue;
-      font-size: clamp(1.6rem, 6vw, 3.6rem); font-weight:700;
+    @keyframes shine { from { background-position: 0% 30%; } to { background-position: 100% 30%; } }
+    .italic-speed {
+      font-style: italic;
+      letter-spacing: -1px;
+      color: deepskyblue;
+      font-size: clamp(1.6rem, 6vw, 3.6rem);
+      font-weight: 700;
     }
 
-    /* --- 表・画像の扱い（モバイル対応） --- */
-    table{ margin: 12px auto; border-collapse: collapse; width:100%; }
-    table[border]{ border:1px solid #fff }
-    th, td{ padding:8px; border:1px solid #999; text-align:center }
-    caption{ caption-side: top; padding-bottom:6px }
+    /* --- 表 --- */
+    table { margin: 12px auto; border-collapse: collapse; width: 100%; text-align: center; }
+    table[border] { border: 1px solid #fff; }
+    th, td { padding: 8px; border: 1px solid #999; text-align: center; }
+    caption { caption-side: top; padding-bottom: 6px; text-align: center; }
 
-    .images-table { float:right; border-collapse: collapse; margin-left: 12px; max-width:40%; }
-    .images-table td { border:1px solid #666; padding:4px }
-    img.responsive { max-width:100%; height:auto; display:block }
+    /* --- スクロール対応 --- */
+    .scroll-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; text-align: center; }
 
-    /* テーブル等の横スクロール対応 */
-    .scroll-wrapper{ overflow-x:auto; -webkit-overflow-scrolling:touch }
+    /* --- リスト --- */
+    ul, ol { margin: 6px auto; padding: 0; text-align: center; }
+    ol { list-style-position: inside; padding-left: 0; text-align: center; width: 100%; max-width: 420px; margin: 0 auto; }
 
-    /* --- リスト・段落調整 --- */
-    ul, ol{ margin: 6px auto; padding: 0; }
-    ol{ list-style-position: outside; padding-left: 40px; text-align:left; width:100%; max-width:420px }
-    p, .text-center{ text-align:center }
+    /* --- 段落 --- */
+    p, li, th, td, caption, h2, h3 { text-align: center; }
 
-    /* --- セーフティ（小画面での読みやすさ） --- */
-    @media (max-width:480px){
-      .container{ width: calc(100% - 24px); margin:24px auto }
-      .background-area{ padding:12px }
-      ol{ padding-left: 28px }
-      .images-table{ float:none; max-width:100%; margin:12px auto }
+    /* --- モバイル調整 --- */
+    @media (max-width: 480px) {
+      .container { width: calc(100% - 24px); margin: 24px auto; }
+      .background-area { padding: 12px; }
+      .images-table { float: none; max-width: 100%; margin: 12px auto; }
     }
 
-    /* --- 小修正・アクセシビリティ --- */
-    a{ color: skyblue }
-    strong{ font-weight:800 }
+    a { color: skyblue; }
   </style>
 </head>
 <body>
@@ -103,7 +99,7 @@
   <div class="container">
 
     <h1 class="glow-text"><span class="special">光を打て!</span></h1>
-    <h3 class="italic-speed"><span class="special"> ～スピード早打ち体験!～</span></h3>
+    <h3 class="italic-speed"><span class="special">～スピード早打ち体験!～</span></h3>
 
     <div class="background-area">
       <h2 class="underline-wavy">作品紹介</h2>
@@ -114,10 +110,9 @@
       <ul class="no-dot">
         <li><strong>場所</strong>
           <ul class="no-dot">
-            <li>香川高専詫間キャンパス
-              <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第１学科棟(令和7年度 学生便覧137p)</a></p>
-              <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第２基礎通信工学実験室(令和7年度 学生便覧140p)</a></p>
-            </li>
+            <li>香川高専詫間キャンパス</li>
+            <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第１学科棟(令和7年度 学生便覧137p)</a></p>
+            <p><a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf">第２基礎通信工学実験室(令和7年度 学生便覧140p)</a></p>
           </ul>
         </li>
       </ul>
@@ -179,7 +174,7 @@
         <li>光が当たったら <span class="underline-solid"><strong>音が鳴る</strong></span></li>
       </ol>
 
-      <p class="text-center">ライトが点灯してから的に当たるまでの <strong>時間を計測</strong> するよ！</p>
+      <p>ライトが点灯してから的に当たるまでの <strong>時間を計測</strong> するよ！</p>
 
       <h2 class="underline-wavy">安全・注意</h2>
       <ul class="no-dot">
@@ -190,7 +185,7 @@
         <li>暗いところでするので、<span class="underline-solid"><strong>足元に注意</strong></span> する！</li>
       </ul>
 
-      <h3 class="text-center"><span class="special">さあ！戦いの始まりだ！</span></h3>
+      <h3><span class="special">さあ！戦いの始まりだ！</span></h3>
     </div>
 
     <h2 class="underline-wavy">実験・作成の工夫</h2>
@@ -218,23 +213,6 @@
         </tr>
       </table>
     </div>
-
-    <div class="background-area1">
-      <h2 class="underline-wavy">作業風景</h2>
-      <div class="scroll-wrapper">
-        <table border="1">
-          <tr>
-            <td> <!-- 画像やキャプションをここへ追加 -->
-              <img class="responsive" src="" alt="作業風景（画像を追加してください）" />
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-
-  </div>
-
-
 
 
 
