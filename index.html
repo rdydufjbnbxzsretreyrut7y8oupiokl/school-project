@@ -167,8 +167,15 @@
   <li>  <span style="font-weight: bold;">場所</span> </li> 
     <ul class="no-dot">
      <li> 香川高専詫間キャンパス
-     <li> <a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf#pagge=163&v=12345" target="_blank" rel="noopener" style="color: skyblue;">第１学科棟</a>
-     <li> <a href="https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf#pagge=166&v=67891" target="_blank" rel="noopener" " style="color: skyblue;">第２基礎通信工学実験室</a>
+     <li> <a href="#" onclick="openPDF(163)" style="color: skyblue;">第１学科棟</a>
+          <a href="#" onclick="openPDF(166)" style="color: skyblue;">第２基礎通信工学実験室(2階)</a>
+            <script>
+              function openPDF(pageNumber) {
+              const base = "https://www.kagawa-nct.ac.jp/campuslife/handbook/takuma_binran2025.pdf";
+              const url = `${base}#page=${pageNumber}&v=${new Date().getTime()}`;
+              window.open(url, '_blank');
+              }
+            </script>
     </ul>
  </ul> 
  <ul class="no-dot">
@@ -342,8 +349,8 @@
 <tr>
   <td>
     <div class="gallery">
-        <img class="responsive" src="paraboraperiperi1.gif" alt="パラボラアンテナペりぺり1">
-        <img class="responsive" src="paraboraperiperi2.gif" alt="パラボラアンテナペりぺり2">
+        <img class="responsive" src="paraboraperiperi1.gif" align="left" alt="パラボラアンテナペりぺり1">
+        <img class="responsive" src="paraboraperiperi2.gif" align="right" alt="パラボラアンテナペりぺり2">
   </td>
   <td>
         <p> 左の写真が土台がついている様子です。 </p>
