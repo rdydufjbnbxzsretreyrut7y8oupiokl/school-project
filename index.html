@@ -203,27 +203,34 @@
 
 
 <h2 class="underline-wavy"> 仕組み </h2>
- <ul class="no-dot">
-  <li> 常に5Vを光トランジスタにかけておく </li>
-  <li> ↓ </li>
-  <li>  <span style="font-weight: bold;">光が当たる</span>  </li>
-  <li> ↓ </li>
-  <li> 流れる <span style="font-weight: bold;">電流が増える</span>  </li>
-  <li> ↓ </li>
-  <li> 抵抗の <span style="font-weight: bold;">両端電圧が変化</span> する </li>
-  <li> ↓ </li>
-  <li> その <span style="font-weight: bold;">変化を</span> Aruduinoで <span style="font-weight: bold;">検知</span> する </li>
-  <li> ↓ </li>
-  <li> ボタンを押すと <span style="font-weight: bold;">ライトが点灯</span>  </li>
-  <li> ↓ </li>
-  <li> 現在の <span style="font-weight: bold;">タイマーをカウント</span> する </li>
-  <li> ↓ </li>
-  <li> ライトが点灯しているかつ電圧が0.02V以下になった時、 <span style="font-weight: bold;">ブザーを鳴らす</span>  </li>
-  <li> ↓ </li>
-  <li> 現在の <span style="font-weight: bold;">タイマーをカウント</span> する </li>
-  <li> ↓ </li>
-  <li> 前回の結果と比べて <span style="font-weight: bold;">経過時間を計算</span> する </li>
+
+<p> ～前提～ </p>
+ <ul>
+  <li> 光トランジスタと抵抗は直列回路 </li>
+  <li> 直列回路に5Vの電圧が常にかかっている </li>
  </ul>
+
+<p> ～動作～ </p>
+ <ul class="no-dot">
+  <li> ボタンを押す </li>
+  <li> ↓ </li>
+  <li>  LED点灯 </li>
+  <li> ↓ </li>
+  <li> 光トランジスタに <span style="font-weight: bold;">光が当たる</span>  </li>
+  <li> ↓ </li>
+  <li> 抵抗に流れる <span style="font-weight: bold;">電流が増加</span> </li>
+  <li> ↓ </li>
+  <li> 抵抗の <span style="font-weight: bold;">両端電圧が変化</span> </li>
+  <li> ↓ </li>
+  <li> その変化を <span style="font-weight: bold;">Aruduinoが検知</span>  </li>
+  <li> ↓ </li>
+  <li> その両端電圧が <span style="font-weight: bold;">約0.0977V以上</span> </li>
+   <ul class="no-dot">
+    <li> ⇒YES : LED消灯 </li>
+    <li> ⇒ NO : 2つ目(LED点灯)に戻り繰り返す </li>
+   </ul> 
+ </ul>
+
 
 <h2 class="underline-wavy"> 体験の仕方 </h2>
  <ol>
