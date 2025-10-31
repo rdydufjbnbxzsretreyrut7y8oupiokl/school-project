@@ -205,9 +205,14 @@
 <h2 class="underline-wavy"> 仕組み </h2>
 
 <p> ～前提～ </p>
- <ul>
+ <ul style="list-style-position: outside; /* デフォルトで左側に番号を配置 */
+            padding-left: 40px;           /* 番号分のスペースを確保 */
+            text-align: left;             /* テキストを左揃え */
+            width: 350px;                 /* 任意の幅 */
+            margin: 0 auto;               /* 横方向中央 */">
   <li> 光トランジスタと抵抗は直列回路 </li>
   <li> 直列回路に5Vの電圧が常にかかっている </li>
+  <li> LEDは3つある </li>
  </ul>
 
 <p> ～動作～ </p>
@@ -225,11 +230,17 @@
   <li> その変化を <span style="font-weight: bold;">Aruduinoが検知</span>  </li>
   <li> ↓ </li>
   <li> その両端電圧が <span style="font-weight: bold;">約0.0977V以上</span> </li>
-   <ul class="no-dot">
+   <ul class="no-dot"
+       style="list-style-position: outside; /* デフォルトで左側に番号を配置 */
+              padding-left: 40px;           /* 番号分のスペースを確保 */
+              text-align: left;             /* テキストを左揃え */
+              width: 350px;                 /* 任意の幅 */
+              margin: 0 auto;               /* 横方向中央 */">
     <li> ⇒YES : LED消灯 </li>
     <li> ⇒ NO : 2つ目(LED点灯)に戻り繰り返す </li>
-   </ul> 
+   </ul>
  </ul>
+<p> LED点灯からすべてのLEDが消灯するまでの時間を測る </p>
 
 
 <h2 class="underline-wavy"> 体験の仕方 </h2>
@@ -237,7 +248,7 @@
   <li> <span class="underline-solid" style="font-weight: bold;">遮光眼鏡</span> を受け取り、付ける </li>
   <li> 線の前に立ち、<span class="underline-solid" style="font-weight: bold;">レーザー銃</span> を受け取る </li>
   <li> 担当者がスイッチを押してスタート </li>
-  <li> ライトが点灯したら的を狙って <span class="underline-solid" style="font-weight: bold;">光を当てる</span> </li>
+  <li> LEDが点灯したら的を狙って <span class="underline-solid" style="font-weight: bold;">光を当てる</span> </li>
   <li> 光が当たったら <span class="underline-solid" style="font-weight: bold;">音が鳴る</span> </li>
  </ol>
 
